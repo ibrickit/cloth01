@@ -8,31 +8,158 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       rel="stylesheet"
     />
-    <title>火纹热烈系详情</title>
+    <title>火纹艺术系</title>
     <style>
       body {
-        margin: 0;
-        height: 100vh;
-        background-color: #eee;
+        font-family: "Inter", sans-serif;
       }
-      * {
-        border: 1px solid black;
+      .slider {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
       }
-      .flex {
+      .slides {
         display: flex;
+        width: 300%; /* 假设3张图片，根据实际图片数量调整 */
+        transition: transform 0.3s ease-in-out;
       }
-      .baiSe {
-        background-color: white;
-      }
-      .flex1 {
-        flex: 1;
+      .slide {
+        width: 33.3333%; /* 根据实际图片数量调整 */
       }
     </style>
   </head>
-  <body class="flex">
-    <!--侧边栏-->
-    <div style="width: 200px" class="baiSe"></div>
-    <!--主区域-->
-    <div class="flex1"></div>
+
+  <body class="bg-gray-100">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-md">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a href="index.html" class="text-xl font-bold text-gray-800"
+          >夏裳港工旗袍</a
+        >
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            >畅销</a
+          >
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            >新品</a
+          >
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            >春夏系列</a
+          >
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            >秋冬系列</a
+          >
+        </div>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            ><i class="fa-solid fa-magnifying-glass"></i
+          ></a>
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            ><i class="fa-solid fa-user"></i
+          ></a>
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            ><i class="fa-solid fa-cart-shopping"></i
+          ></a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 产品详情部分 -->
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold text-gray-800 mb-4">火纹艺术系</h1>
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="slider w-full md:w-1/2">
+          <div class="slides" id="slides3">
+            <div class="slide">
+              <img
+                src="images/item02/photo02_1.jpg"
+                alt="产品图片1"
+                class="w-full object-cover"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="images/item02/photo02_2.jpg"
+                alt="产品图片2"
+                class="w-full object-cover"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="images/item02/photo02_3.jpg"
+                alt="产品图片3"
+                class="w-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <p class="text-gray-600 mb-4">
+            柔软针织材质，温暖舒适，展现休闲风格。这款针织毛衣采用了柔软的毛线，手工编织而成，具有良好的保暖性能。休闲的设计，让您在寒冷的冬天也能感受到温暖和舒适。
+          </p>
+          <span class="text-xl font-bold text-gray-800">$59.99</span>
+          <a
+            href="#"
+            class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition mt-4 inline-block"
+            >加入购物车</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-white shadow-md">
+      <div
+        class="container mx-auto px-4 py-6 flex justify-between items-center"
+      >
+        <p class="text-gray-600">© 2025 服装品牌. 保留所有权利.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            >关于我们</a
+          >
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            >联系我们</a
+          >
+          <a href="#" class="text-gray-600 hover:text-gray-800 transition"
+            >隐私政策</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const slides3 = document.getElementById("slides3");
+      let currentIndex3 = 0;
+
+      function slideLeft3() {
+        if (currentIndex3 > 0) {
+          currentIndex3--;
+          slides3.style.transform = `translateX(-${currentIndex3 * 33.3333}%)`;
+        }
+      }
+
+      function slideRight3() {
+        if (currentIndex3 < 2) {
+          currentIndex3++;
+          slides3.style.transform = `translateX(-${currentIndex3 * 33.3333}%)`;
+        }
+      }
+
+      document.addEventListener("touchstart", function (e) {
+        const touchStartX = e.touches[0].clientX;
+        document.addEventListener("touchend", function handleTouchEnd(e) {
+          const touchEndX = e.changedTouches[0].clientX;
+          const deltaX = touchEndX - touchStartX;
+          if (deltaX > 50) {
+            slideLeft3();
+          } else if (deltaX < -50) {
+            slideRight3();
+          }
+          document.removeEventListener("touchend", handleTouchEnd);
+        });
+      });
+    </script>
   </body>
 </html>

@@ -8,10 +8,23 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       rel="stylesheet"
     />
-    <title>绮梦艺术系详情</title>
+    <title>绮梦艺术系</title>
     <style>
       body {
         font-family: "Inter", sans-serif;
+      }
+      .slider {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+      .slides {
+        display: flex;
+        width: 300%; /* 假设3张图片，根据实际图片数量调整 */
+        transition: transform 0.3s ease-in-out;
+      }
+      .slide {
+        width: 33.3333%; /* 根据实际图片数量调整 */
       }
     </style>
   </head>
@@ -57,16 +70,36 @@
     <div class="container mx-auto px-4 py-8">
       <h1 class="text-3xl font-bold text-gray-800 mb-4">绮梦艺术系</h1>
       <div class="flex flex-col md:flex-row gap-4">
-        <img
-          src="images/photo01.jpg"
-          alt="产品图片"
-          class="w-full md:w-1/2 object-cover"
-        />
+        <div class="slider w-full md:w-1/2">
+          <div class="slides" id="slides3">
+            <div class="slide">
+              <img
+                src="images/item01/photo01_1.jpg"
+                alt="产品图片1"
+                class="w-full object-cover"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="images/item01/photo01_2.jpg"
+                alt="产品图片2"
+                class="w-full object-cover"
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="images/item01/photo01_3.jpg"
+                alt="产品图片3"
+                class="w-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
         <div class="md:w-1/2">
           <p class="text-gray-600 mb-4">
-            高品质纯棉材质，穿着舒适，款式简约大方。这款T恤采用了优质的纯棉面料，具有良好的透气性和吸湿性，让您在炎热的夏天也能保持清爽。简约的设计风格，适合各种场合穿着。
+            柔软针织材质，温暖舒适，展现休闲风格。这款针织毛衣采用了柔软的毛线，手工编织而成，具有良好的保暖性能。休闲的设计，让您在寒冷的冬天也能感受到温暖和舒适。
           </p>
-          <span class="text-xl font-bold text-gray-800">$29.99</span>
+          <span class="text-xl font-bold text-gray-800">$59.99</span>
           <a
             href="#"
             class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition mt-4 inline-block"
@@ -95,5 +128,38 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      const slides3 = document.getElementById("slides3");
+      let currentIndex3 = 0;
+
+      function slideLeft3() {
+        if (currentIndex3 > 0) {
+          currentIndex3--;
+          slides3.style.transform = `translateX(-${currentIndex3 * 33.3333}%)`;
+        }
+      }
+
+      function slideRight3() {
+        if (currentIndex3 < 2) {
+          currentIndex3++;
+          slides3.style.transform = `translateX(-${currentIndex3 * 33.3333}%)`;
+        }
+      }
+
+      document.addEventListener("touchstart", function (e) {
+        const touchStartX = e.touches[0].clientX;
+        document.addEventListener("touchend", function handleTouchEnd(e) {
+          const touchEndX = e.changedTouches[0].clientX;
+          const deltaX = touchEndX - touchStartX;
+          if (deltaX > 50) {
+            slideLeft3();
+          } else if (deltaX < -50) {
+            slideRight3();
+          }
+          document.removeEventListener("touchend", handleTouchEnd);
+        });
+      });
+    </script>
   </body>
 </html>
